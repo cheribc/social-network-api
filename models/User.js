@@ -1,8 +1,9 @@
 // Require schema and model from Mongoose
-const mongoose = require('mongoose');
+const { Schema, model }= require('mongoose');
 
 // Construct a new instance of the schema class
-const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema(
+    {
     // Configure individual properties using Schema Types
     //TODO: add Properties - Required, Trimmed
     username: { type: String, required: true },
@@ -15,3 +16,13 @@ const userSchema = new mongoose.Schema({
 });
 
 // TODO: Schema Settings Create a virtual friendCount that retrieves the  length of the user's friends array field on query
+ userSchema
+    .virtual('getfriendCount')
+    // Getter
+    .get(function() {
+        return `count: ${this.friend}`;
+    });
+
+const Thought = model('thought', thoughtSchema);
+
+module.exports = Thought;
