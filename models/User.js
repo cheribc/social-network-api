@@ -6,23 +6,38 @@ const userSchema = new mongoose.Schema(
     {
     // Configure individual properties using Schema Types
     //TODO: add Properties - Required, Trimmed
-    username: { type: String, required: true },
-    email: { type: String, required: true },
+    username: { 
+        type: String, 
+        required: true,
+        trim: true,
+        unique: true
+    },
+    // Use Mongoose built-in validation for email to prevent duplicates with 'unique' property for each document's given path
+    email: { 
+        type: String, 
+        required: true,
+        match: [/.+\@.+\..+/],
+        unique: true
+    },
     // TODO: Array of _id values referencing the Thought model
-    // TODO: Add Properties - Unique, must match valid email address through Mongoose matching validation
-    thoughts: { type: Array, required: false },
-    // TODO: Array of _id values referencing the User Model (self-reference)
-    friends: { type: Array, required: false }
-});
-
+    thought: [{ type: Schema.Types.ObjectId, ref: 'Thought' }],
+    friend: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+    },
+    {
+        toJSON: {
+            virtuals: true
+        },
+        id: false
+    });
+    
 // TODO: Schema Settings Create a virtual friendCount that retrieves the  length of the user's friends array field on query
  userSchema
-    .virtual('getfriendCount')
+    .virtual('friendCount')
     // Getter
     .get(function() {
-        return `count: ${this.friend}`;
+        return this.friends.length;
     });
 
-const Thought = model('thought', thoughtSchema);
+const User = model('User', userSchema);
 
-module.exports = Thought;
+module.exports = User;

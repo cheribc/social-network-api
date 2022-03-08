@@ -10,19 +10,23 @@ const thoughtSchema = new mongoose.Schema(
         required: true,
         minlength: 1,
         maxlength: 280,
-
+        // TODO: Use a getter method to format the timestamp on query
+        timestamps: true
     },
     createdAt: {
         type: Date,
         default: Date.now,
     },   
+},
+    {
         toJson: {
-            virtuals: true,
+            getters: true,
         }, 
-
+        id: false,
+    }
         // Run function for default date to be today/now
         default: () => Date.now(),
-        // TODO: Use a getter method to format the timestamp on query
+        
     },
     // Refers to user that created this thought
     username: {
