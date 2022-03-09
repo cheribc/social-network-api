@@ -6,7 +6,7 @@ const reactionSchema = new Schema(
 {
     reactionId: {
         type: Schema.Types.ObjectId,
-        default: () => Types.ObjectId(),
+        default: () => new Types.ObjectId(),
     },
 
     reactionBody: {
@@ -28,6 +28,7 @@ const reactionSchema = new Schema(
 }, 
 {
     toJSON: {
+        virtuals: true,
         getters: true,
     },
 }

@@ -2,9 +2,9 @@ const router = require('express').Router();
 
 const {
     getAllThoughts,
-    addReaction,
+    createReaction,
     getThoughtsById,
-    createThoughts,
+    createThought,
     deleteReaction,
     updateThoughts,
     deleteThought,
@@ -20,17 +20,21 @@ POST to create a new thought (don't forget to push the created thought's _id to 
 } 
 PUT to update a user by its _id
 DELETE to remove user by its _id*/
-// GET /api/thought
-router.route('/').get(getAllThoughts).post(createThought);
-// GET, PUT, DELETE  /api/thought/:id
-router.route('/:thoughtId').get(getThoughtsById).put(updateThoughts).delete(deleteThought);
-// POST  /api/thought/:userId
-router.route(':userId').post(createThought);
 
-// POST  /api/thought/:thoughtId/reactions
-router.route('/:thoughtId/reactions').post(addReaction);
+// GET /api/thoughts
+router.route('/').get(getAllThoughts).post(createThought);
+
+// GET, PUT, DELETE  /api/thought/:id
+router.route('/:id').get(getThoughtsById).put(updateThoughts).delete(deleteThought);
+
+// // POST  /api/thought/:userId
+// router.route(':userId').post(createThought);
+
+// POST  /api/thoughts/:thoughtId/reactions
+router.route('/:thoughtId/reactions').post(createReaction);
+
 // DELETE /api/thought/:thoughtId/reactionId
-router.route('/:thoughtId/reactions/:reactionid').delete(deleteReaction);
+router.route('/:thoughtId/reactions/:reactionId').delete(deleteReaction);
 
 module.exports = router;
 
