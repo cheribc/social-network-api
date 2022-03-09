@@ -1,6 +1,7 @@
 const { User } = require('../models');
 
 module.exports = {
+  // GET all users
     getUser(req, res) {
         User.find()
             .then((User) => res.json(User))
