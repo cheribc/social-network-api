@@ -16,8 +16,8 @@ const activity = cwd.includes('/social-network-api')
         [1]
         : cwd;
 
+app.use(urlencoded({ extended: true }));        
 app.use(express.json());
-app.use(urlencoded({ extended: true }));
 app.use(routes);
 
 app.get('/', function (req, res) {

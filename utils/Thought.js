@@ -18,6 +18,6 @@ const thoughtSeed = [
 
     },
 ],
-
+},
 // PUT to update a thought by its _id
 // DELETE to remove a thought by its _id

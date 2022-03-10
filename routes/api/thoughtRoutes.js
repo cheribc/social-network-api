@@ -3,7 +3,7 @@ const router = require('express').Router();
 const {
     getAllThoughts,
     createReaction,
-    getThoughtsById,
+    getThoughts,
     createThought,
     deleteReaction,
     updateThoughts,
@@ -25,16 +25,16 @@ DELETE to remove user by its _id*/
 router.route('/').get(getAllThoughts).post(createThought);
 
 // GET, PUT, DELETE  /api/thought/:id
-router.route('/:id').get(getThoughtsById).put(updateThoughts).delete(deleteThought);
+router.route('/:id').get(getThoughts).put(updateThoughts).delete(deleteThought);
 
 // // POST  /api/thought/:userId
 // router.route(':userId').post(createThought);
 
 // POST  /api/thoughts/:thoughtId/reactions
-router.route('/:thoughtId/reactions').post(createReaction);
+router.route('thoughts/:thoughtId/reactions').post(createReaction).delete(deleteReactionById);
 
-// DELETE /api/thought/:thoughtId/reactionId
-router.route('/:thoughtId/reactions/:reactionId').delete(deleteReaction);
+// // DELETE /api/thought/:thoughtId/reactionId
+// router.route('/:thoughtId/reactions/:reactionId').delete(deleteReaction);
 
 module.exports = router;
 
