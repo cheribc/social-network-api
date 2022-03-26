@@ -11,18 +11,17 @@ const app = express();
 
 // Indicate which activity's server is running in the terminal
 
-const activity = cwd.includes('/social-network-api')
-    ? cwd.split('/social-network-api')
-        [1]
+const activity = cwd.includes('social-network-api')
+    ? cwd.split('/social-network-api')[1]
         : cwd;
 
-app.use(urlencoded({ extended: true }));        
+app.use(express.urlencoded({ extended: true }));        
 app.use(express.json());
 app.use(routes);
 
-app.get('/', function (req, res) {
-    res.send('Hello World')
-})
+// app.get('/', function (req, res) {
+//     res.send('Hello World')
+// })
 
 db.once('open', () => {
     app.listen(PORT, () => {

@@ -1,5 +1,5 @@
 // Require schema and model from Mongoose
-const { Schema, model }= require('mongoose');
+const { Schema, model, Types }= require('mongoose');
 
 // Construct a new instance of the schema class
 const userSchema = new Schema(
@@ -18,8 +18,7 @@ const userSchema = new Schema(
             type: String, 
             required: true,
             unique: true,
-            match: [/.+\@.+\..+/],
-            // match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email address'],
+            match: [/.+\@.+\..+/, 'Please enter a valid email addres']
     },
     // TODO: Array of _id values referencing the Thought model
     thoughts: [
