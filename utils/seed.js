@@ -2,7 +2,7 @@ const connection = require('../config/connection');
 const { User, Thought } = require('../models');
 
 // TODO:Import functions for seed data
-const { getAllUsers, getUserbyId, crateUser, updateUser, deleteUser, deleteFriends }
+const { getUsers, getSingleUser, createUser, updateUser, deleteUser, removeFriend }
 = require('./data');
 
 connection.on('error', (err) => err);

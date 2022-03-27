@@ -1,5 +1,5 @@
 // Require schema and model from Mongoose
-const { Schema, model, Types }= require('mongoose');
+const { Schema, model }= require('mongoose');
 
 // Construct a new instance of the schema class
 const userSchema = new Schema(
@@ -12,34 +12,34 @@ const userSchema = new Schema(
             required: true,
             trim: true,
         
-    },
+        },
     // Use Mongoose built-in validation for email to prevent duplicates with 'unique' property for each document's given path
-    email: { 
+        email: { 
             type: String, 
             required: true,
             unique: true,
             match: [/.+\@.+\..+/, 'Please enter a valid email addres']
-    },
+        },
     // TODO: Array of _id values referencing the Thought model
-    thoughts: [
-        { 
-            type: Schema.Types.ObjectId, 
-            ref: 'Thought' 
-        },
-    ],
-    friends: [
-        { 
-            type: Schema.Types.ObjectId, 
-            ref: 'User', 
-        },
-    ],
+            thoughts: [
+            { 
+                type: Schema.Types.ObjectId, 
+                ref: 'Thought', 
+            },
+        ],
+            friends: [
+            { 
+                type: Schema.Types.ObjectId, 
+                ref: 'User', 
+            },
+        ],
     },
     {
         toJSON: {
             virtuals: true,
             getters: true
         },
-        id: false
+        id: false,
     }
 );
     
